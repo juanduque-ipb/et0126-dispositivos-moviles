@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación de Dispositivos Móviles · I.U. Pascual Bravo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --orange: #E87722;
+  --orange-light: #FDF0E6;
+  --navy: #1B2F5B;
+  --navy-mid: #2A4480;
+  --navy-light: #EEF2FA;
+  --green: #0D7A55;
+  --green-light: #E6F5F0;
+  --red-light: #FEF2F2;
+  --yellow-light: #FEFCE8;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --white: #FFFFFF;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #F0F2F7;
+  color: var(--gray-900);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════ COVER ══════════════════ */
+.cover {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.cover-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--orange) 0%, #F5A623 100%);
+}
+.cover-inner {
+  padding: 28px 44px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.cover-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cover-logo-area img {
+  height: 56px;
+  border-radius: 6px;
+  background: white;
+  padding: 4px;
+}
+.inst-name {
+  color: white;
+}
+.inst-name .main { font-size: 0.95rem; font-weight: 700; }
+.inst-name .sub { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+.cover-right {
+  text-align: right;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
+}
+.cover-right strong { color: var(--orange); font-size: 0.8rem; display: block; margin-bottom: 2px; }
+
+.cover-hero {
+  padding: 36px 44px 44px;
+  position: relative;
+}
+.cover-hero::before {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,119,34,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: rgba(232,119,34,0.2);
+  color: var(--orange);
+  border: 1px solid rgba(232,119,34,0.4);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 16px;
+}
+.cover-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  line-height: 1.2;
+  max-width: 520px;
+  letter-spacing: -0.02em;
+}
+.cover-title span { color: var(--orange); }
+.cover-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 10px;
+  max-width: 460px;
+}
+
+.cover-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  border-radius: 20px;
+  padding: 5px 13px;
+}
+.pill.accent {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: white;
+  font-weight: 600;
+}
+
+/* ══════════════════ LAYOUT ══════════════════ */
+.page { max-width: 1080px; margin: 0 auto; padding: 36px 24px 60px; }
+
+/* ══════════════════ SECTION HEADER ══════════════════ */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 40px 0 20px;
+}
+.sec-icon {
+  width: 36px; height: 36px;
+  background: var(--orange);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.sec-head h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.sec-head h2 small {
+  font-weight: 400;
+  color: var(--gray-500);
+  font-size: 0.82rem;
+  margin-left: 6px;
+}
+.sec-line {
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+/* ══════════════════ STATS ROW ══════════════════ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 4px;
+}
+@media (max-width: 700px) { .stats-row { grid-template-columns: repeat(3, 1fr); } }
+
+.stat {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 14px 12px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.stat .num {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.stat .lbl {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--gray-400);
+  margin-top: 3px;
+}
+
+/* ══════════════════ UNIT CARDS ══════════════════ */
+.units-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 680px) { .units-row { grid-template-columns: 1fr; } }
+
+.unit {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.unit-head {
+  padding: 16px 18px 14px;
+  position: relative;
+}
+.unit-head.u1 { background: var(--navy); }
+.unit-head.u2 { background: var(--orange); }
+.unit-head.u3 { background: var(--green); }
+.unit-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+.unit-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: white;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+.unit-weeks-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  padding: 2px 8px;
+}
+.unit-body { padding: 14px 18px 16px; }
+.unit-topic {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.78rem;
+  color: var(--gray-700);
+}
+.unit-topic:last-child { border-bottom: none; }
+.unit-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.u1 .unit-dot, .dot-u1 { background: var(--navy); }
+.u2 .unit-dot, .dot-u2 { background: var(--orange); }
+.u3 .unit-dot, .dot-u3 { background: var(--green); }
+
+/* ══════════════════ TOOLS ══════════════════ */
+.tools-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 680px) { .tools-row { grid-template-columns: 1fr; } }
+
+.tool {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 0;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .15s, transform .15s;
+}
+.tool:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.tool-logo-band {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.tool-logo {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.tool-logo img {
+  width: 28px; height: 28px;
+  object-fit: contain;
+}
+.tool-logo.multi {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  padding: 5px;
+}
+.tool-logo.multi img { width: 100%; height: 100%; }
+
+.tool-logo-bg-flutter { background: #F5F5FF; }
+.tool-logo-bg-ides    { background: #F0F7FF; }
+.tool-logo-bg-github  { background: #F3F3F3; }
+.tool-logo-bg-design  { background: #FFF5F0; }
+.tool-logo-bg-firebase{ background: #FFF8F0; }
+.tool-logo-bg-ai      { background: #F0F5FF; }
+
+.tool-name-area h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.rec-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: var(--orange);
+  color: white;
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-top: 3px;
+}
+.tool-body {
+  padding: 12px 18px 16px;
+  flex: 1;
+}
+.tool-body p {
+  font-size: 0.76rem;
+  color: var(--gray-500);
+  line-height: 1.55;
+}
+
+/* ══════════════════ GRADES ══════════════════ */
+.grades-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 680px) { .grades-row { grid-template-columns: 1fr; } }
+
+.grade {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.grade-top {
+  padding: 18px 20px 14px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.grade-top.g1 { background: var(--navy); }
+.grade-top.g2 { background: var(--orange); }
+.grade-top.g3 { background: var(--green); }
+.grade-pct {
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.grade-meta { padding-bottom: 3px; }
+.grade-corte {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.grade-unit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  margin-top: 2px;
+}
+.grade-body { padding: 14px 18px 16px; }
+.grade-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.78rem;
+}
+.grade-item:last-child { border-bottom: none; }
+.grade-item span { color: var(--gray-700); }
+.grade-item strong { color: var(--navy); font-weight: 700; }
+.grade-footer {
+  margin: 10px 0 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--orange);
+  background: var(--orange-light);
+  border-radius: 6px;
+  padding: 5px 9px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ══════════════════ CALENDAR ══════════════════ */
+.cal-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 2fr 1.6fr;
+  gap: 0;
+  background: var(--navy);
+  border-radius: 12px 12px 0 0;
+  padding: 0;
+  overflow: hidden;
+}
+.cal-header div {
+  padding: 10px 14px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: rgba(255,255,255,0.65);
+}
+
+.cal-wrap {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.cal-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 2fr 1.6fr;
+  border-bottom: 1px solid var(--gray-100);
+  transition: background .12s;
+}
+.cal-row:last-child { border-bottom: none; }
+.cal-row:hover { background: var(--gray-50); }
+
+.cal-row.travel { background: #fffbeb; }
+.cal-row.travel:hover { background: #fef3c7; }
+.cal-row.sicau-mark { background: var(--green-light); }
+.cal-row.sicau-mark:hover { background: #d1fae5; }
+
+.cal-sem {
+  padding: 13px 0 13px 14px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--gray-100);
+}
+.cal-sem.s-u1 { color: var(--navy); border-left: 3px solid var(--navy); }
+.cal-sem.s-u2 { color: var(--orange); border-left: 3px solid var(--orange); }
+.cal-sem.s-u3 { color: var(--green); border-left: 3px solid var(--green); }
+.cal-sem.s-travel { color: #d97706; border-left: 3px solid #f59e0b; }
+.cal-sem.s-close { color: var(--gray-400); border-left: 3px solid var(--gray-200); }
+
+.cal-dates {
+  padding: 13px 14px;
+  border-right: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cal-date-lun, .cal-date-mie {
+  font-size: 0.73rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.cal-date-lun { color: var(--gray-700); font-weight: 500; margin-bottom: 2px; }
+.cal-date-mie { color: var(--gray-400); }
+.day-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gray-400);
+  width: 20px;
+}
+
+.cal-topic {
+  padding: 13px 14px;
+  border-right: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.topic-label {
+  font-size: 0.72rem;
+  color: var(--gray-500);
+}
+.topic-main {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray-900);
+  line-height: 1.35;
+}
+
+.cal-deliverable {
+  padding: 13px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.del-lab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--navy-mid);
+  background: var(--navy-light);
+  border-radius: 4px;
+  padding: 2px 7px;
+  width: fit-content;
+}
+.del-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #7c3aed;
+  background: #f5f3ff;
+  border-radius: 4px;
+  padding: 2px 7px;
+  width: fit-content;
+}
+.del-sicau {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  background: var(--green-light);
+  border-radius: 4px;
+  padding: 2px 7px;
+  width: fit-content;
+}
+.del-travel {
+  font-size: 0.78rem;
+  color: #92400e;
+  font-style: italic;
+}
+.del-text {
+  font-size: 0.76rem;
+  color: var(--gray-500);
+  line-height: 1.4;
+}
+
+/* ══════════════════ AI POLICY ══════════════════ */
+.ai-wrap {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.ai-head {
+  background: linear-gradient(120deg, var(--navy) 0%, var(--navy-mid) 100%);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ai-head-icon {
+  font-size: 1.8rem;
+  width: 50px; height: 50px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ai-head-text h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+}
+.ai-head-text p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 3px;
+}
+.ai-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+@media (max-width: 680px) { .ai-body { grid-template-columns: 1fr; } }
+
+.ai-panel {
+  padding: 20px 22px;
+  border-right: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+}
+.ai-panel:nth-child(2n) { border-right: none; }
+.ai-panel:nth-child(3), .ai-panel:nth-child(4) { border-bottom: none; }
+
+.ai-panel-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ai-panel-title.ok { color: var(--green); }
+.ai-panel-title.no { color: #dc2626; }
+.ai-panel-title.how { color: var(--navy); }
+.ai-panel-title.idea { color: var(--orange); }
+
+.ai-list { list-style: none; }
+.ai-list li {
+  font-size: 0.78rem;
+  color: var(--gray-700);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.ai-list li:last-child { border-bottom: none; }
+.ai-bullet { flex-shrink: 0; font-size: 0.7rem; margin-top: 1px; }
+
+.ai-note {
+  font-size: 0.78rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+.ai-note strong { color: var(--gray-900); }
+.ai-highlight {
+  margin-top: 10px;
+  background: var(--orange-light);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: #92400e;
+  font-weight: 500;
+}
+
+/* ══════════════════ FINAL PROJECT ══════════════════ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 680px) { .project-grid { grid-template-columns: 1fr; } }
+
+.proj-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .15s, transform .15s;
+  display: flex;
+  flex-direction: column;
+}
+.proj-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.proj-card-top {
+  padding: 14px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--gray-100);
+  border-radius: 12px 12px 0 0;
+}
+.proj-icon-wrap {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+.proj-card h3 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.proj-card p {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  line-height: 1.55;
+  padding: 10px 16px 14px;
+  flex: 1;
+}
+
+/* ══════════════════ FOOTER ══════════════════ */
+footer {
+  background: var(--navy);
+  border-top: 4px solid var(--orange);
+  padding: 20px 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-left { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+.footer-left strong { color: white; }
+.footer-right { font-size: 0.72rem; color: rgba(255,255,255,0.4); font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ COVER ══════════════════════ -->
+<div class="cover">
+  <div class="cover-stripe"></div>
+  <div class="cover-inner">
+    <div class="cover-logo-area">
+      <!-- Logo cuadrado -->
+      <img src="https://pascualbravo.edu.co/wp-content/uploads/2026/03/Logo-I.U.Pascual-Bravo_500-X-500-px.png"
+           alt="Logo I.U. Pascual Bravo"
+           onerror="this.style.display='none'"
+           style="height:56px;border-radius:6px;background:white;padding:4px;">
+      <!-- Imagotipo horizontal con sello de acreditación -->
+      <img src="https://pascualbravo.edu.co/wp-content/uploads/2023/06/cropped-Imagotipo-horizontal_acreditados.png"
+           alt="Imagotipo Pascual Bravo Acreditada"
+           onerror="this.style.display='none'"
+           style="height:48px;border-radius:4px;background:white;padding:4px 8px;">
+      <div class="inst-name" style="border-left:1px solid rgba(255,255,255,0.2);padding-left:14px;">
+        <div class="main">Institución Universitaria Pascual Bravo</div>
+        <div class="sub">Facultad de Ingeniería · Dpto. Electrónica</div>
+        <div class="sub" style="margin-top:3px;color:rgba(232,119,34,0.8);font-size:0.65rem;font-weight:600;letter-spacing:.05em;">ACREDITADA EN ALTA CALIDAD · MEN 2022</div>
+      </div>
+    </div>
+    <div class="cover-right">
+      <strong>ET0126</strong>
+      Tecnología en Desarrollo de Software<br>
+      Semestre Ago – Nov 2026<br>
+      <span style="color:rgba(255,255,255,0.75);margin-top:6px;display:block;">👨‍🏫 Docente: <strong style="color:white;">Juan Duque</strong></span>
+    </div>
+  </div>
+  <div class="cover-hero">
+    <div class="cover-tag">Plan académico · Modalidad presencial</div>
+    <h1 class="cover-title">Programación de<br><span>Dispositivos Móviles</span></h1>
+    <p class="cover-subtitle">Diseño y desarrollo de aplicaciones para Android e iOS usando frameworks modernos, metodologías ágiles y herramientas de IA como asistente.</p>
+    <div class="cover-pills">
+      <span class="pill accent">4 Créditos</span>
+      <span class="pill">Lunes y Miércoles</span>
+      <span class="pill">14 semanas activas</span>
+      <span class="pill">3 Unidades didácticas</span>
+      <span class="pill">192 h totales</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PAGE ══════════════════════ -->
+<div class="page">
+
+  <!-- ─── STATS ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">📋</div>
+    <h2>Información general</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="num">10 Ago</div><div class="lbl">Primera clase</div></div>
+    <div class="stat"><div class="num">12 Nov</div><div class="lbl">Última clase</div></div>
+    <div class="stat"><div class="num">4 h</div><div class="lbl">Acompañamiento / sem</div></div>
+    <div class="stat"><div class="num">8 h</div><div class="lbl">Trabajo independ. / sem</div></div>
+    <div class="stat"><div class="num">ET0056</div><div class="lbl">Prerrequisito</div></div>
+    <div class="stat"><div class="num">30·30·40</div><div class="lbl">Distribución notas</div></div>
+  </div>
+
+  <!-- ─── UNIDADES ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">📚</div>
+    <h2>Unidades didácticas</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="units-row">
+    <div class="unit">
+      <div class="unit-head u1">
+        <div class="unit-num">Unidad 1</div>
+        <div class="unit-name">Criterios para la selección de un Sistema Operativo</div>
+        <div class="unit-weeks-badge">Sem. 1 – 5</div>
+      </div>
+      <div class="unit-body">
+        <div class="unit-topic"><div class="unit-dot dot-u1"></div>Tipos de SO: Android vs iOS</div>
+        <div class="unit-topic"><div class="unit-dot dot-u1"></div>Apps nativas, híbridas y web</div>
+        <div class="unit-topic"><div class="unit-dot dot-u1"></div>Arquitectura básica de una app</div>
+        <div class="unit-topic"><div class="unit-dot dot-u1"></div>Entorno Flutter: widgets y árbol de componentes</div>
+        <div class="unit-topic"><div class="unit-dot dot-u1"></div>Compilación, emulador y dispositivo físico</div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="unit-head u2">
+        <div class="unit-num">Unidad 2</div>
+        <div class="unit-name">Desarrollo de Aplicaciones Básicas</div>
+        <div class="unit-weeks-badge">Sem. 6 – 10</div>
+      </div>
+      <div class="unit-body">
+        <div class="unit-topic"><div class="unit-dot dot-u2"></div>Integración UI + lógica (setState)</div>
+        <div class="unit-topic"><div class="unit-dot dot-u2"></div>Funciones predefinidas del SO</div>
+        <div class="unit-topic"><div class="unit-dot dot-u2"></div>Canvas: figuras y eventos táctiles</div>
+        <div class="unit-topic"><div class="unit-dot dot-u2"></div>Almacenamiento local: SharedPreferences / SQLite</div>
+        <div class="unit-topic"><div class="unit-dot dot-u2"></div>App funcional con persistencia de datos</div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="unit-head u3">
+        <div class="unit-num">Unidad 3</div>
+        <div class="unit-name">Implementación de Software Móvil</div>
+        <div class="unit-weeks-badge">Sem. 11 – 14</div>
+      </div>
+      <div class="unit-body">
+        <div class="unit-topic"><div class="unit-dot dot-u3"></div>Requisitos de usuario y Scrum</div>
+        <div class="unit-topic"><div class="unit-dot dot-u3"></div>Navegación entre pantallas (go_router)</div>
+        <div class="unit-topic"><div class="unit-dot dot-u3"></div>Firebase: Firestore y autenticación</div>
+        <div class="unit-topic"><div class="unit-dot dot-u3"></div>Pruebas unitarias y depuración</div>
+        <div class="unit-topic"><div class="unit-dot dot-u3"></div>Despliegue: APK y Play Store</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TOOLS ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">🛠</div>
+    <h2>Herramientas del curso</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="tools-row">
+
+    <!-- Flutter -->
+    <div class="tool">
+      <div class="tool-logo-band">
+        <div class="tool-logo tool-logo-bg-flutter">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
+        </div>
+        <div class="tool-name-area">
+          <h3>Flutter + Dart</h3>
+          <div class="rec-badge">★ Herramienta principal</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <p>Framework de Google, multiplataforma (Android + iOS). <strong>Hot reload</strong>, documentación excelente y alta demanda laboral. Un solo código para ambas plataformas.</p>
+      </div>
+    </div>
+
+    <!-- IDEs -->
+    <div class="tool">
+      <div class="tool-logo-band">
+        <div class="tool-logo tool-logo-bg-ides multi">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+        </div>
+        <div class="tool-name-area">
+          <h3>Android Studio<br>/ VS Code</h3>
+          <div class="rec-badge">★ IDE oficial</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <p>Android Studio incluye emulador AVD integrado. VS Code + extensión Flutter como alternativa más ligera. Ambos son gratuitos.</p>
+      </div>
+    </div>
+
+    <!-- GitHub -->
+    <div class="tool">
+      <div class="tool-logo-band">
+        <div class="tool-logo tool-logo-bg-github">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+        </div>
+        <div class="tool-name-area">
+          <h3>GitHub</h3>
+          <div class="rec-badge" style="background:var(--navy);">● Obligatorio</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <p>Control de versiones desde el día uno. Cada entregable es un repositorio con historial de commits. También se usará para el plan del curso (GitHub Pages).</p>
+      </div>
+    </div>
+
+    <!-- Mockup -->
+    <div class="tool">
+      <div class="tool-logo-band">
+        <div class="tool-logo tool-logo-bg-design multi">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg" alt="Canva">
+        </div>
+        <div class="tool-name-area">
+          <h3>Mockup de pantallas</h3>
+          <div class="rec-badge" style="background:var(--gray-500);">Herramienta libre</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <p>Entrega en <strong>PDF</strong>. Figma, Canva, Marvel, papel escaneado, PowerPoint — lo que el equipo prefiera. Se evalúa el diseño, no la herramienta.</p>
+      </div>
+    </div>
+
+    <!-- Firebase -->
+    <div class="tool">
+      <div class="tool-logo-band">
+        <div class="tool-logo tool-logo-bg-firebase">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+        </div>
+        <div class="tool-name-area">
+          <h3>Firebase</h3>
+          <div class="rec-badge" style="background:#F5A623;">Unidad 3</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <p>Firestore (base de datos remota en tiempo real) y Firebase Auth para el proyecto final. Plan gratuito (Spark) suficiente para el curso.</p>
+      </div>
+    </div>
+
+    <!-- IA -->
+    <div class="tool">
+      <div class="tool-logo-band">
+        <div class="tool-logo tool-logo-bg-ai multi">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="Copilot" style="filter:hue-rotate(200deg) saturate(2);">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai-original.svg'">
+        </div>
+        <div class="tool-name-area">
+          <h3>IA como copiloto</h3>
+          <div class="rec-badge" style="background:#6366f1;">Con responsabilidad</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <p>GitHub Copilot, ChatGPT, Gemini, Claude — permitidos como <strong>asistentes</strong>. El estudiante sigue siendo el autor. Ver política completa abajo.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── GRADES ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">📊</div>
+    <h2>Calificaciones <small>· Entregables de software, no teoría</small></h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="grades-row">
+    <div class="grade">
+      <div class="grade-top g1">
+        <div class="grade-pct">30%</div>
+        <div class="grade-meta">
+          <div class="grade-corte">Primer corte</div>
+          <div class="grade-unit">Unidad 1 · SO y Framework</div>
+        </div>
+      </div>
+      <div class="grade-body">
+        <div class="grade-item"><span>App "Hello World" personalizada (GitHub)</span><strong>10%</strong></div>
+        <div class="grade-item"><span>App con interfaz propia + emulador</span><strong>12%</strong></div>
+        <div class="grade-item"><span>Quiz conceptual (SO y tipos de app)</span><strong>8%</strong></div>
+        <div class="grade-footer">⚠ SICAU · Semana 5 · 7–11 Sep 2026</div>
+      </div>
+    </div>
+    <div class="grade">
+      <div class="grade-top g2">
+        <div class="grade-pct">30%</div>
+        <div class="grade-meta">
+          <div class="grade-corte">Segundo corte</div>
+          <div class="grade-unit">Unidad 2 · Apps con datos</div>
+        </div>
+      </div>
+      <div class="grade-body">
+        <div class="grade-item"><span>App con Canvas interactivo</span><strong>10%</strong></div>
+        <div class="grade-item"><span>App con almacenamiento local funcional</span><strong>15%</strong></div>
+        <div class="grade-item"><span>Quiz técnico (Unidad 2)</span><strong>5%</strong></div>
+        <div class="grade-footer">⚠ SICAU · Semana 10 · 12–16 Oct 2026</div>
+      </div>
+    </div>
+    <div class="grade">
+      <div class="grade-top g3">
+        <div class="grade-pct">40%</div>
+        <div class="grade-meta">
+          <div class="grade-corte">Tercer corte</div>
+          <div class="grade-unit">Unidad 3 · Proyecto final</div>
+        </div>
+      </div>
+      <div class="grade-body">
+        <div class="grade-item"><span>Proyecto completo en GitHub (APK)</span><strong>25%</strong></div>
+        <div class="grade-item"><span>Demo + sustentación en vivo</span><strong>10%</strong></div>
+        <div class="grade-item"><span>Despliegue en Play Store / local</span><strong>5%</strong></div>
+        <div class="grade-footer">⚠ SICAU · Semana 16 · 23–27 Nov 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CALENDAR ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">📅</div>
+    <h2>Calendario de clases</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="cal-wrap">
+    <!-- Header -->
+    <div class="cal-header">
+      <div>Sem.</div>
+      <div>Fechas</div>
+      <div>Tema</div>
+      <div>Actividad / Entregable</div>
+    </div>
+
+    <!-- UNIDAD 1 -->
+    <div class="cal-row">
+      <div class="cal-sem s-u1">1</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>10 Ago</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>12 Ago</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U1 · Sistemas operativos móviles</div>
+        <div class="topic-main">Historia del smartphone. Tipos de SO y de apps. Arquitectura básica.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-lab">💻 Lab</span>
+        <div class="del-text">Instalación Flutter + Android Studio. Ejecutar primer proyecto.</div>
+      </div>
+    </div>
+
+    <div class="cal-row travel">
+      <div class="cal-sem s-travel">2</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>17 Ago</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>19 Ago</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">✈ Sin clases — Docente de viaje</div>
+        <div class="topic-main">Actividad autónoma: leer documentación oficial de Flutter y completar "Tour of Dart".</div>
+      </div>
+      <div class="cal-deliverable">
+        <div class="del-travel">Sin sesión presencial</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u1">3</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>24 Ago</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>26 Ago</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U1 · Framework</div>
+        <div class="topic-main">Estructura de proyecto Dart. Widgets básicos: Text, Button, TextField. Árbol de componentes.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-lab">💻 Lab</span>
+        <div class="del-text">Pantalla de login con formulario básico (sin lógica real).</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u1">4</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>31 Ago</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>2 Sep</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U1 · Compilación y ejecución</div>
+        <div class="topic-main">Emulador AVD y dispositivo físico. Icono, nombre y colores propios de la app.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-submit">📦 Entrega</span>
+        <div class="del-text">App "Hello World" personalizada — GitHub + APK en emulador.</div>
+      </div>
+    </div>
+
+    <div class="cal-row sicau-mark">
+      <div class="cal-sem s-u1">5</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>7 Sep</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>9 Sep</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U1 · Cierre y evaluación</div>
+        <div class="topic-main">Repaso, socialización de apps, retroalimentación entre pares. Quiz conceptual.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-sicau">✅ SICAU 30% — Semana 5</span>
+        <div class="del-text">App con interfaz personalizada (GitHub).</div>
+      </div>
+    </div>
+
+    <!-- UNIDAD 2 -->
+    <div class="cal-row">
+      <div class="cal-sem s-u2">6</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>14 Sep</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>16 Sep</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U2 · UI + Lógica</div>
+        <div class="topic-main">Integración diseño–código. Manejo de estado con setState. Funciones del SO.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-lab">💻 Lab</span>
+        <div class="del-text">App contador con animaciones y feedback visual.</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u2">7</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>21 Sep</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>23 Sep</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U2 · Canvas y gráficos</div>
+        <div class="topic-main">Bases del lienzo (Canvas). Figuras geométricas, dibujo libre, captura de eventos táctiles.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-lab">💻 Lab</span>
+        <div class="del-text">App de pizarra digital interactiva.</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u2">8</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>28 Sep</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>30 Sep</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U2 · Almacenamiento local</div>
+        <div class="topic-main">SharedPreferences y SQLite. Guardar, leer y eliminar datos entre sesiones.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-lab">💻 Lab</span>
+        <div class="del-text">Lista de tareas (To-Do) con persistencia — los datos sobreviven al cierre de la app.</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u2">9</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>5 Oct</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>7 Oct</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U2 · App integrada</div>
+        <div class="topic-main">Sprint colaborativo: UI + gráficos + almacenamiento en una sola app funcional.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-submit">📦 Entrega</span>
+        <div class="del-text">App de notas con colores y persistencia — GitHub + APK.</div>
+      </div>
+    </div>
+
+    <div class="cal-row sicau-mark">
+      <div class="cal-sem s-u2">10</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>12 Oct</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>14 Oct</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U2 · Cierre y evaluación</div>
+        <div class="topic-main">Demo de apps, retroalimentación técnica. Quiz Unidad 2.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-sicau">✅ SICAU 30% — Semana 10</span>
+        <div class="del-text">App con Canvas + almacenamiento (GitHub + APK).</div>
+      </div>
+    </div>
+
+    <!-- UNIDAD 3 -->
+    <div class="cal-row">
+      <div class="cal-sem s-u3">11</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>19 Oct</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>21 Oct</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U3 · Requisitos y diseño</div>
+        <div class="topic-main">Scrum en apps móviles. User stories, backlog. Mockup de pantallas del proyecto final.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-lab">💻 Lab</span>
+        <div class="del-text">Definición de proyecto: mockup PDF + GitHub Issues con backlog.</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u3">12</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>26 Oct</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>28 Oct</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U3 · Navegación y estructura</div>
+        <div class="topic-main">Navigator / go_router. Menús laterales, tabs, flujos entre pantallas.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-submit">🏗 Sprint 1</span>
+        <div class="del-text">Pantallas principales navegables — GitHub PR.</div>
+      </div>
+    </div>
+
+    <div class="cal-row">
+      <div class="cal-sem s-u3">13</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>2 Nov</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>4 Nov</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U3 · Firebase y backend</div>
+        <div class="topic-main">Firestore (CRUD remoto), Firebase Auth. Pruebas unitarias y depuración.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-submit">🏗 Sprint 2</span>
+        <div class="del-text">CRUD conectado a Firebase — GitHub PR.</div>
+      </div>
+    </div>
+
+    <div class="cal-row sicau-mark">
+      <div class="cal-sem s-u3">14</div>
+      <div class="cal-dates">
+        <div class="cal-date-lun"><span class="day-label">Lun</span>10 Nov</div>
+        <div class="cal-date-mie"><span class="day-label">Mié</span>12 Nov</div>
+      </div>
+      <div class="cal-topic">
+        <div class="topic-label">U3 · Demo final 🏁</div>
+        <div class="topic-main">Sustentación y demo en vivo. Preguntas técnicas. Despliegue APK / Play Store.</div>
+      </div>
+      <div class="cal-deliverable">
+        <span class="del-sicau">✅ SICAU 40% — Semana 16</span>
+        <div class="del-text">App completa — GitHub + APK + Mockup PDF. Entrega SICAU: 23–27 Nov.</div>
+      </div>
+    </div>
+
+  </div><!-- /cal-wrap -->
+
+  <!-- ─── PROJECT ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">🏆</div>
+    <h2>Proyecto final <small>· 40% del total</small></h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="project-grid">
+    <div class="proj-card">
+      <div class="proj-card-top">
+        <div class="proj-icon-wrap" style="background:#EEF2FA;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" style="width:22px;height:22px;" alt="App">
+        </div>
+        <h3>App funcional</h3>
+      </div>
+      <p>Mínimo 4 pantallas navegables que resuelvan un problema real. CRUD completo: crear, leer, actualizar y eliminar datos.</p>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-top">
+        <div class="proj-icon-wrap" style="background:#FFF8F0;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" style="width:22px;height:22px;" alt="Firebase">
+        </div>
+        <h3>Backend conectado</h3>
+      </div>
+      <p>Firebase Firestore o SQLite local. Los datos persisten entre sesiones. Bonus: autenticación de usuarios.</p>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-top">
+        <div class="proj-icon-wrap" style="background:#F3F3F3;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width:22px;height:22px;" alt="GitHub">
+        </div>
+        <h3>GitHub obligatorio</h3>
+      </div>
+      <p>Repositorio público con README, capturas de pantalla y mínimo 10 commits con mensajes descriptivos.</p>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-top">
+        <div class="proj-icon-wrap" style="background:#FFF5F0;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" style="width:22px;height:22px;" alt="Mockup">
+        </div>
+        <h3>Mockup en PDF</h3>
+      </div>
+      <p>Diseño previo de pantallas en la herramienta que prefieran. Se evalúa la claridad del diseño, no la herramienta usada.</p>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-top">
+        <div class="proj-icon-wrap" style="background:#F0FDF4;">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" style="width:22px;height:22px;" alt="APK">
+        </div>
+        <h3>APK descargable</h3>
+      </div>
+      <p>Ejecutable sin errores en emulador o dispositivo físico Android. Bonus: publicado en Play Store.</p>
+    </div>
+    <div class="proj-card">
+      <div class="proj-card-top">
+        <div class="proj-icon-wrap" style="background:#FDF4FF;">
+          <span style="font-size:1.2rem;">🎤</span>
+        </div>
+        <h3>Demo en vivo</h3>
+      </div>
+      <p>10 minutos por equipo: demostración de la app funcionando + explicación de decisiones técnicas. Preguntas del docente.</p>
+    </div>
+  </div>
+
+  <!-- ─── AI POLICY ─── -->
+  <div class="sec-head">
+    <div class="sec-icon">🤖</div>
+    <h2>Política de IA <small>· Copiloto, no piloto</small></h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="ai-wrap">
+    <div class="ai-head">
+      <div class="ai-head-icon">🤖</div>
+      <div class="ai-head-text">
+        <h3>El uso de IA está permitido — con responsabilidad</h3>
+        <p>GitHub Copilot, ChatGPT, Gemini, Claude y similares son herramientas válidas de desarrollo. El estudiante sigue siendo el autor y el responsable de todo lo que entrega.</p>
+      </div>
+    </div>
+    <div class="ai-body">
+      <div class="ai-panel">
+        <div class="ai-panel-title ok">✅ Uso permitido</div>
+        <ul class="ai-list">
+          <li><span class="ai-bullet">›</span>Pedir que explique cómo funciona un widget o método</li>
+          <li><span class="ai-bullet">›</span>Sugerir estructura de código que el estudiante ya diseñó</li>
+          <li><span class="ai-bullet">›</span>Depurar un error que ya entendió pero no sabe resolver</li>
+          <li><span class="ai-bullet">›</span>Generar código base que luego se adapta y comprende</li>
+          <li><span class="ai-bullet">›</span>Declarar el uso de IA en el README <strong>(suma puntos)</strong></li>
+        </ul>
+      </div>
+      <div class="ai-panel">
+        <div class="ai-panel-title no">❌ Uso no permitido</div>
+        <ul class="ai-list">
+          <li><span class="ai-bullet">›</span>"Hazme la app completa del proyecto final"</li>
+          <li><span class="ai-bullet">›</span>Entregar código que el estudiante no puede explicar</li>
+          <li><span class="ai-bullet">›</span>Un solo commit con todo el proyecto</li>
+          <li><span class="ai-bullet">›</span>No saber por qué el código hace lo que hace</li>
+          <li><span class="ai-bullet">›</span>Todos los equipos con código idéntico</li>
+        </ul>
+      </div>
+      <div class="ai-panel">
+        <div class="ai-panel-title how">🔍 Cómo se verifica</div>
+        <ul class="ai-list">
+          <li><span class="ai-bullet">›</span>Historial de commits en GitHub (mínimo 10 commits)</li>
+          <li><span class="ai-bullet">›</span>Preguntas técnicas en la sustentación</li>
+          <li><span class="ai-bullet">›</span>"¿Por qué usaste este widget y no ese?"</li>
+          <li><span class="ai-bullet">›</span>Modificar una función en vivo durante la demo</li>
+          <li><span class="ai-bullet">›</span>El código debe reflejar el nivel del grupo</li>
+        </ul>
+      </div>
+      <div class="ai-panel">
+        <div class="ai-panel-title idea">💡 Marco conceptual</div>
+        <div class="ai-note">
+          La IA es un <strong>agente colaborador</strong>: tú defines el problema, tú tomas las decisiones de arquitectura y tú validas el resultado.
+          <br><br>
+          El programador sigue siendo responsable — la IA es como un practicante muy rápido que debes supervisar.
+        </div>
+        <div class="ai-highlight">Declarar el uso de IA en el README suma puntos, no los resta.</div>
+      </div>
+    </div>
+  </div>
+
+
+</div><!-- /page -->
+
+<footer>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <img src="https://pascualbravo.edu.co/wp-content/uploads/2026/03/Logo-I.U.Pascual-Bravo_500-X-500-px.png"
+         alt="Pascual Bravo" onerror="this.style.display='none'"
+         style="height:36px;border-radius:4px;background:rgba(255,255,255,0.1);padding:3px;">
+    <div class="footer-left">
+      <strong>Institución Universitaria Pascual Bravo</strong> · Facultad de Ingeniería · Módulo ET0126<br>
+      <span style="color:rgba(255,255,255,0.45);font-size:0.7rem;">Docente: Juan Duque</span>
+    </div>
+  </div>
+  <div class="footer-right">"Tradición – Transformación – Innovación" · Semestre 2026</div>
+</footer>
+
+</body>
+</html>
