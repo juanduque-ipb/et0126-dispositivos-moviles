@@ -802,8 +802,22 @@ footer {
     <h2>Información general</h2>
     <div class="sec-line"></div>
   </div>
+  <!-- Botones acceso rápido -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <a href="#calendario" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--navy);color:white;border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+      <span style="font-size:1.6rem;">📅</span>
+      <span style="font-weight:800;font-size:1rem;">Ver Calendario</span>
+      <span style="font-size:.75rem;opacity:.65;font-weight:400;">Semanas · temas · entregas</span>
+    </a>
+    <a href="plan.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--orange);color:white;border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+      <span style="font-size:1.6rem;">📋</span>
+      <span style="font-weight:800;font-size:1rem;">Material de Bienvenida</span>
+      <span style="font-size:.75rem;opacity:.85;font-weight:400;">Instalación · recursos · checklist</span>
+    </a>
+  </div>
+
   <div class="stats-row">
-    <div class="stat"><div class="num">10 Ago</div><div class="lbl">Primera clase</div></div>
+    <div class="stat"><div class="num">24 Ago</div><div class="lbl">Primera clase</div></div>
     <div class="stat"><div class="num">12 Nov</div><div class="lbl">Última clase</div></div>
     <div class="stat"><div class="num">4 h</div><div class="lbl">Acompañamiento / sem</div></div>
     <div class="stat"><div class="num">8 h</div><div class="lbl">Trabajo independ. / sem</div></div>
@@ -1026,7 +1040,7 @@ footer {
   </div>
 
   <!-- ─── CALENDAR ─── -->
-  <div class="sec-head">
+  <div id="calendario" class="sec-head">
     <div class="sec-icon">📅</div>
     <h2>Calendario de clases</h2>
     <div class="sec-line"></div>
@@ -1044,26 +1058,27 @@ footer {
     <div class="cal-row festivo">
       <div class="cal-sem s-travel">1</div>
       <div class="cal-dates">
-        <div class="cal-date-lun" style="opacity:.55;"><span class="day-label">Lun</span>10 Ago <span class="festivo-badge" style="background:#ef4444;">SISMO</span></div>
-        <div class="cal-date-mie" style="opacity:.55;"><span class="day-label">Mié</span>12 Ago <span class="festivo-badge">FESTIVO</span></div>
+        <div class="cal-date-lun" style="opacity:.6;"><span class="day-label">Lun</span>10 Ago <span class="festivo-badge" style="background:#ef4444;">SISMO</span></div>
+        <div class="cal-date-mie" style="opacity:.6;"><span class="day-label">Mié</span>12 Ago <span class="festivo-badge" style="background:#6B7280;">LABORAL</span></div>
       </div>
       <div class="cal-topic">
         <div class="topic-label">⚠ Sin clases — Semana 1</div>
-        <div class="topic-main">Lunes cancelado por terremoto. Miércoles festivo. Se comparte material de bienvenida y guía de preparación del entorno por Google Chat / Classroom.</div>
+        <div class="topic-main">Lunes cancelado por sismo. Miércoles por temas laborales del docente. Se comparte material de bienvenida y guía de preparación del entorno.</div>
       </div>
       <div class="cal-deliverable">
         <div class="del-travel">Sin sesión presencial</div>
+        <a href="plan.html" style="display:inline-block;margin-top:6px;font-size:.75rem;font-weight:700;color:#E87722;text-decoration:none;">📋 Ver guía de preparación →</a>
       </div>
     </div>
 
     <div class="cal-row travel">
       <div class="cal-sem s-travel">2</div>
       <div class="cal-dates">
-        <div class="cal-date-lun"><span class="day-label">Lun</span>17 Ago</div>
-        <div class="cal-date-mie"><span class="day-label">Mié</span>19 Ago</div>
+        <div class="cal-date-lun" style="opacity:.6;"><span class="day-label">Lun</span>17 Ago <span class="festivo-badge">FESTIVO</span></div>
+        <div class="cal-date-mie" style="opacity:.6;"><span class="day-label">Mié</span>19 Ago <span class="festivo-badge" style="background:#7C3AED;">VIAJE</span></div>
       </div>
       <div class="cal-topic">
-        <div class="topic-label">✈ Sin clases — Docente de viaje</div>
+        <div class="topic-label">✈ Sin clases — Semana 2</div>
         <div class="topic-main">
           <strong>Instalar el entorno:</strong> Flutter SDK · Android Studio + plugins Flutter/Dart · Emulador AVD (Pixel 6, API 34) · <code>flutter create mi_primera_app</code> → correr en AVD · subir repo a GitHub.<br><br>
           <strong>Aprender mientras tanto:</strong> "Tour of Dart" en dart.dev · "Dart in 100 seconds" y "Flutter in 100 seconds" (Fireship en YouTube) · leer diferencias: nativo vs híbrido vs PWA · pensar qué app resolverá un problema real.
@@ -1072,6 +1087,7 @@ footer {
       <div class="cal-deliverable">
         <div class="del-travel">Sin sesión presencial</div>
         <div class="del-text" style="margin-top:6px;font-size:.75rem;color:#92400e;font-weight:600;">Llegar a sem. 3 con entorno listo y repo en GitHub</div>
+        <a href="plan.html" style="display:inline-block;margin-top:4px;font-size:.75rem;font-weight:700;color:#E87722;text-decoration:none;">📋 Ver guía completa →</a>
       </div>
     </div>
 
