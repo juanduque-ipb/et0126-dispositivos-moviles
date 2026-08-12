@@ -467,8 +467,21 @@ body {
 
 .cal-row.travel { background: #fffbeb; }
 .cal-row.travel:hover { background: #fef3c7; }
+.cal-row.festivo { background: #fef3c7; }
+.cal-row.festivo:hover { background: #fde68a; }
 .cal-row.sicau-mark { background: var(--green-light); }
 .cal-row.sicau-mark:hover { background: #d1fae5; }
+.festivo-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #f59e0b;
+  color: white;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
 
 .cal-sem {
   padding: 13px 0 13px 14px;
@@ -1027,20 +1040,19 @@ footer {
       <div>Actividad / Entregable</div>
     </div>
 
-    <!-- UNIDAD 1 -->
-    <div class="cal-row">
-      <div class="cal-sem s-u1">1</div>
+    <!-- SEMANAS SIN CLASE -->
+    <div class="cal-row festivo">
+      <div class="cal-sem s-travel">1</div>
       <div class="cal-dates">
-        <div class="cal-date-lun"><span class="day-label">Lun</span>10 Ago</div>
-        <div class="cal-date-mie"><span class="day-label">Mié</span>12 Ago</div>
+        <div class="cal-date-lun" style="opacity:.55;"><span class="day-label">Lun</span>10 Ago <span class="festivo-badge" style="background:#ef4444;">SISMO</span></div>
+        <div class="cal-date-mie" style="opacity:.55;"><span class="day-label">Mié</span>12 Ago <span class="festivo-badge">FESTIVO</span></div>
       </div>
       <div class="cal-topic">
-        <div class="topic-label">U1 · Sistemas operativos móviles</div>
-        <div class="topic-main">Historia del smartphone. Tipos de SO y de apps. Arquitectura básica.</div>
+        <div class="topic-label">⚠ Sin clases — Semana 1</div>
+        <div class="topic-main">Lunes cancelado por terremoto. Miércoles festivo. Se comparte material de bienvenida y guía de preparación del entorno por Google Chat / Classroom.</div>
       </div>
       <div class="cal-deliverable">
-        <span class="del-lab">💻 Lab</span>
-        <div class="del-text">Instalación Flutter + Android Studio. Ejecutar primer proyecto.</div>
+        <div class="del-travel">Sin sesión presencial</div>
       </div>
     </div>
 
@@ -1052,10 +1064,14 @@ footer {
       </div>
       <div class="cal-topic">
         <div class="topic-label">✈ Sin clases — Docente de viaje</div>
-        <div class="topic-main">Actividad autónoma: leer documentación oficial de Flutter y completar "Tour of Dart".</div>
+        <div class="topic-main">
+          <strong>Instalar el entorno:</strong> Flutter SDK · Android Studio + plugins Flutter/Dart · Emulador AVD (Pixel 6, API 34) · <code>flutter create mi_primera_app</code> → correr en AVD · subir repo a GitHub.<br><br>
+          <strong>Aprender mientras tanto:</strong> "Tour of Dart" en dart.dev · "Dart in 100 seconds" y "Flutter in 100 seconds" (Fireship en YouTube) · leer diferencias: nativo vs híbrido vs PWA · pensar qué app resolverá un problema real.
+        </div>
       </div>
       <div class="cal-deliverable">
         <div class="del-travel">Sin sesión presencial</div>
+        <div class="del-text" style="margin-top:6px;font-size:.75rem;color:#92400e;font-weight:600;">Llegar a sem. 3 con entorno listo y repo en GitHub</div>
       </div>
     </div>
 
@@ -1066,12 +1082,12 @@ footer {
         <div class="cal-date-mie"><span class="day-label">Mié</span>26 Ago</div>
       </div>
       <div class="cal-topic">
-        <div class="topic-label">U1 · Framework</div>
-        <div class="topic-main">Estructura de proyecto Dart. Widgets básicos: Text, Button, TextField. Árbol de componentes.</div>
+        <div class="topic-label">U1 · Sistemas operativos móviles + Framework</div>
+        <div class="topic-main">Historia del smartphone. Tipos de SO y apps: nativo, híbrido, PWA. Estructura de proyecto Dart. Widgets básicos: Text, Button, TextField.</div>
       </div>
       <div class="cal-deliverable">
         <span class="del-lab">💻 Lab</span>
-        <div class="del-text">Pantalla de login con formulario básico (sin lógica real).</div>
+        <div class="del-text">Revisión del entorno instalado. Pantalla de login con formulario básico.</div>
       </div>
     </div>
 
@@ -1082,8 +1098,8 @@ footer {
         <div class="cal-date-mie"><span class="day-label">Mié</span>2 Sep</div>
       </div>
       <div class="cal-topic">
-        <div class="topic-label">U1 · Compilación y ejecución</div>
-        <div class="topic-main">Emulador AVD y dispositivo físico. Icono, nombre y colores propios de la app.</div>
+        <div class="topic-label">U1 · Compilación, emulador y personalización</div>
+        <div class="topic-main">Emulador AVD y dispositivo físico. Icono, splash, nombre y colores propios. Árbol de widgets. Primer APK firmado.</div>
       </div>
       <div class="cal-deliverable">
         <span class="del-submit">📦 Entrega</span>
