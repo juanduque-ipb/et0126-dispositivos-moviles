@@ -747,6 +747,89 @@ footer {
 .footer-left { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
 .footer-left strong { color: white; }
 .footer-right { font-size: 0.72rem; color: rgba(255,255,255,0.4); font-style: italic; }
+
+/* ══════════════════ RESPONSIVE ══════════════════ */
+html { scroll-behavior: smooth; }
+#calendario { scroll-margin-top: 14px; }
+
+@media (max-width: 780px) {
+  .cover-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 20px 26px;
+    gap: 16px;
+  }
+  .cover-right { text-align: left; }
+  .cover-hero { padding: 8px 20px 30px; }
+  .cover-title { font-size: 1.55rem; max-width: 100%; }
+  .cover-subtitle { max-width: 100%; }
+  .cover-logo-area { flex-wrap: wrap; gap: 10px; }
+  .cover-logo-area img { height: 44px; }
+  .inst-name { border-left: none !important; padding-left: 0 !important; }
+
+  .page { padding: 26px 16px 48px; }
+  .sec-head { margin: 30px 0 16px; }
+  .sec-head h2 { font-size: 0.95rem; }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .cover-title { font-size: 1.3rem; }
+  .cover-pills { gap: 6px; }
+  .pill { font-size: 0.68rem; padding: 4px 10px; }
+
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+
+  /* Botones acceso rápido → 1 columna */
+  .quick-access { grid-template-columns: 1fr !important; }
+
+  /* ── Calendario: de tabla a tarjetas ── */
+  .cal-wrap { background: transparent; box-shadow: none; border-radius: 0; }
+  .cal-header { display: none; }
+  .cal-row {
+    grid-template-columns: 1fr;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+  .cal-row:last-child { margin-bottom: 0; }
+  .cal-row.travel, .cal-row.festivo { border-color: #fde68a; }
+  .cal-row.sicau-mark { border-color: #a7f3d0; }
+
+  .cal-sem {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-100);
+    padding: 8px 14px;
+    font-size: 0.68rem;
+  }
+  .cal-sem::before { content: "Semana "; font-weight: 500; color: var(--gray-400); margin-right: 3px; }
+
+  .cal-dates {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-100);
+    padding: 10px 14px;
+    flex-direction: row;
+    gap: 16px;
+  }
+  .cal-topic {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-100);
+    padding: 10px 14px;
+  }
+  .cal-deliverable { padding: 10px 14px; }
+}
+
+@media (max-width: 380px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .cover-title { font-size: 1.15rem; }
+}
 </style>
 </head>
 <body>
@@ -803,13 +886,13 @@ footer {
     <div class="sec-line"></div>
   </div>
   <!-- Botones acceso rápido -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
-    <a href="#calendario" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--navy);color:white;border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+  <div class="quick-access" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <a href="#calendario" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--navy);color:white;border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:opacity .15s;-webkit-tap-highlight-color:transparent;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
       <span style="font-size:1.6rem;">📅</span>
       <span style="font-weight:800;font-size:1rem;">Ver Calendario</span>
       <span style="font-size:.75rem;opacity:.65;font-weight:400;">Semanas · temas · entregas</span>
     </a>
-    <a href="plan.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--orange);color:white;border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+    <a href="plan.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--orange);color:white;border-radius:12px;padding:18px 16px;text-decoration:none;text-align:center;transition:opacity .15s;-webkit-tap-highlight-color:transparent;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
       <span style="font-size:1.6rem;">📋</span>
       <span style="font-weight:800;font-size:1rem;">Material de Bienvenida</span>
       <span style="font-size:.75rem;opacity:.85;font-weight:400;">Instalación · recursos · checklist</span>
@@ -1001,9 +1084,10 @@ footer {
         </div>
       </div>
       <div class="grade-body">
-        <div class="grade-item"><span>App "Hello World" personalizada (GitHub)</span><strong>10%</strong></div>
+        <div class="grade-item"><span>Entrega 0 — Entorno listo + repo en GitHub (sem. 3)</span><strong>5%</strong></div>
+        <div class="grade-item"><span>App "Hello World" personalizada (GitHub + APK)</span><strong>8%</strong></div>
         <div class="grade-item"><span>App con interfaz propia + emulador</span><strong>12%</strong></div>
-        <div class="grade-item"><span>Quiz conceptual (SO y tipos de app)</span><strong>8%</strong></div>
+        <div class="grade-item"><span>Quiz conceptual (SO y tipos de app)</span><strong>5%</strong></div>
         <div class="grade-footer">⚠ SICAU · Semana 5 · 7–11 Sep 2026</div>
       </div>
     </div>

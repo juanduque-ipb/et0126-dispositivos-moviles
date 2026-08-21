@@ -140,6 +140,35 @@ body { font-family: 'Inter', sans-serif; background: #F0F2F7; color: #1a1a2e; li
   margin-top: 20px;
 }
 .footer a { color: var(--orange); text-decoration: none; }
+
+/* ══════════════════ RESPONSIVE ══════════════════ */
+html { scroll-behavior: smooth; }
+
+@media (max-width: 640px) {
+  .header-inner { padding: 22px 20px 26px; }
+  .header-title { font-size: 1.5rem; }
+  .header-sub { font-size: .82rem; }
+  .header-meta { gap: 8px; }
+  .pill { font-size: .68rem; padding: 4px 10px; }
+
+  .container { padding: 24px 16px; }
+  .alert-box { padding: 14px 16px; margin-bottom: 24px; }
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: .95rem; }
+
+  .step { padding: 14px 16px; gap: 12px; }
+  .step-num { width: 28px; height: 28px; font-size: .78rem; }
+  .step-body h4 { font-size: .88rem; }
+  .step-body p { font-size: .82rem; }
+
+  .challenge { padding: 20px 18px; }
+}
+
+@media (max-width: 420px) {
+  .header-title { font-size: 1.3rem; }
+  .step { flex-direction: column; gap: 8px; }
+  .step-num { width: 26px; height: 26px; }
+}
 </style>
 </head>
 <body>
