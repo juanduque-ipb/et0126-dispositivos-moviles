@@ -1,0 +1,8 @@
+# Keep this starter project minimal for students.
+# Everything under this directory is ignored except the source, its manifest,
+# and this file, which defines the rule.
+/*
+!/.gitignore
+!/lib/
+!/lib/**
+!/pubspec.yaml
