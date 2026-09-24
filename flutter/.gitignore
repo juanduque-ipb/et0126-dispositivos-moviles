@@ -1,0 +1,10 @@
+# Regla general para cada proyecto dentro de flutter/.
+# Solo se conserva en Git el trabajo realizado para clase.
+/*/*
+!/*/
+!/*/.gitignore
+!/*/lib/
+!/*/lib/**
+!/*/assets/
+!/*/assets/**
+!/*/pubspec.yaml
