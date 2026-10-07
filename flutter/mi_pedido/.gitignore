@@ -1,0 +1,8 @@
+# Mantiene el proyecto local completo, pero versiona solo el trabajo de clase.
+/*
+!/.gitignore
+!/lib/
+!/lib/**
+!/assets/
+!/assets/**
+!/pubspec.yaml
