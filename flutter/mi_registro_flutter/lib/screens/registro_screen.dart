@@ -1,5 +1,6 @@
 import 'package:devliveryapp/models/registro.dart';
 import 'package:devliveryapp/services/registro_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -255,7 +256,19 @@ class _RegistroScreenState extends State<RegistroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nuevo Registro')),
+      appBar: AppBar(title: const Text('Nuevo Registro'), actions: [
+        IconButton(
+            onPressed: () async {
+              try {
+                await FirebaseAuth.instance.signOut();
+              } catch (_) {
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('No se pudo cerrar sesión')));
+              }
+            },
+            icon: const Icon(Icons.logout))
+      ]),
       body: ListView(padding: const EdgeInsets.all(20), children: [
         const Text('Completa los datos para registrar'),
         const SizedBox(height: 16),
